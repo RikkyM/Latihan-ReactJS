@@ -1,42 +1,59 @@
-import Button from "../components/Elements/Button";
+import { useState } from "react";
+import NoteLayouts from "../components/Layouts/NoteLayouts";
 
-const NoteAppPage = (props) => {
-  const tekan = (e) => {
+const NoteAppPage = () => {
+  const initialData = JSON.parse(localStorage.getItem("note")) || [];
+  const [note, setNote] = useState(initialData);
+
+  const colors = ["bg-orange-400", "bg-yellow-300", "bg-purple-500", "bg-sky-400"];
+
+  const tanggal = new Date();
+
+  const formatTanggal = tanggal.toLocaleString("id-ID", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+
+  const handleAddNote = (e) => {
     e.preventDefault();
 
-    e.target.judul.value && console.log(e.target.judul.value);
+    const data = [
+      ...note,
+      {
+        id: initialData.length + 1,
+        note: "",
+        warna: colors[Math.floor(Math.random() * colors.length)],
+        created_at: formatTanggal,
+      },
+    ];
 
-    const checkLocal = JSON.parse(localStorage.getItem('note-app')) || [];
-
-    localStorage.setItem(
-      "note-app",
-      JSON.stringify([...checkLocal, {
-        id: Date.now(),
-        judul: "test" + Date.now(),
-      }])
-    );
+    setNote(data);
+    localStorage.setItem("note", JSON.stringify(data));
   };
 
+  const handleNoteChange = (id, value) => {
+    const updateNote = note.map(item =>
+      item.id === id ? { ...item, note: value } : item
+    );
+    setNote(updateNote);
+    localStorage.setItem("note", JSON.stringify(updateNote));
+  };
+
+  const handleNoteDelete = (id) => {
+    const deleteNote = note.filter(item => item.id !== id);
+
+    setNote(deleteNote)
+    localStorage.setItem('note', JSON.stringify(deleteNote));
+  }
+
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="max-w-xs w-full">
-        <form onSubmit={tekan}>
-          <div className="mb-3">
-            <label htmlFor="judul" className="block mb-2 font-bold text-lg">
-              Judul
-            </label>
-            <input
-              className="px-3 py-2 text-sm border rounded-md w-full"
-              type="text"
-              name="judul"
-              id="judul"
-              placeholder="Masukkan Judul..."
-            />
-          </div>
-          <Button type="submit">Tekan</Button>
-        </form>
-      </div>
-    </div>
+    <>
+      <NoteLayouts data={note} handleAddNote={handleAddNote} handleNoteChange={handleNoteChange} handleNoteDelete={handleNoteDelete}/>
+    </>
   );
 };
 
