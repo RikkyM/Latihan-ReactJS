@@ -18,13 +18,21 @@ const NoteAppPage = () => {
     year: "numeric",
   });
 
+  const getId = (data) => {
+    if (data.length === 0) return 0;
+    return Math.max(...data.map(item => item.id))
+  }
+
   const handleAddNote = (e) => {
     e.preventDefault();
+
+    const newId = getId(note);
+    const id = newId + 1;
 
     const data = [
       ...note,
       {
-        id: initialData.length + 1,
+        id: id,
         note: "",
         warna: colors[Math.floor(Math.random() * colors.length)],
         created_at: formatTanggal,
