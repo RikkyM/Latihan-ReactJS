@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import HomePage from "./pages/homepage";
 import LatihanUseState from "./pages/latihan-usestate";
+import NoteAppPage from "./pages/note-app";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
   {
     path: "/latihan-usestate",
     element: <LatihanUseState />,
+  },
+  {
+    path: "/note-app",
+    element: <NoteAppPage />,
   },
 ]);
 

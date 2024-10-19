@@ -1,5 +1,5 @@
 import Button from "../Elements/Button";
-import InputLatihanUseState from "../Elements/Input";
+import InputLatihanUseState from "../Elements/InputUS";
 
 const LatihanUSForm = (props) => {
   const { formSubmit } = props;

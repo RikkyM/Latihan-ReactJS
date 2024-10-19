@@ -3,7 +3,6 @@ import LatihanUS from "../components/Layouts/LatihanUs";
 
 const LatihanUseState = () => {
   const initialData = JSON.parse(localStorage.getItem("data")) || [];
-  console.log(initialData);
 
   const [data, setData] = useState(initialData);
   const submit = (e) => {
