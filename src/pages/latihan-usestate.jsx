@@ -5,8 +5,6 @@ const LatihanUseState = () => {
   const initialData = JSON.parse(localStorage.getItem("data")) || [];
 
   const [data, setData] = useState(initialData);
-  const [p, setP] = useState([]);
-  console.log(p);
   
   const submit = (e) => {
     e.preventDefault();

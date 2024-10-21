@@ -10,16 +10,19 @@ const NoteLayouts = (props) => {
           <ButtonAdd handleAddNote={handleAddNote} />
         </div>
 
-      <div className="w-full h-full overflow-auto">
-        <h1 className="text-3xl font-bold px-5 py-7 sticky top-0 bg-white">
-          Notes
-        </h1>
-        <div className="flex gap-8 flex-wrap px-5">
-          <Card data={data} handleNoteChange={handleNoteChange} handleNoteDelete={handleNoteDelete}/>
+        <div className="w-full h-full overflow-auto">
+          <h1 className="text-3xl font-bold px-5 py-7 sticky top-0 bg-white">
+            Notes
+          </h1>
+          <div className="flex gap-8 flex-wrap px-5">
+            <Card
+              data={data}
+              handleNoteChange={handleNoteChange}
+              handleNoteDelete={handleNoteDelete}
+            />
+          </div>
         </div>
       </div>
-      </div>
-
     </>
   );
 };

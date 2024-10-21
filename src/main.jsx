@@ -5,6 +5,8 @@ import "./index.css";
 import HomePage from "./pages/homepage";
 import LatihanUseState from "./pages/latihan-usestate";
 import NoteAppPage from "./pages/note-app";
+import LatihanUseEffect from "./pages/latihan-useeffect";
+
 
 const router = createBrowserRouter([
   {
@@ -18,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/note-app",
     element: <NoteAppPage />,
+  },
+  {
+    path: "/latihan-useeffect",
+    element: <LatihanUseEffect />,
   },
 ]);
 
